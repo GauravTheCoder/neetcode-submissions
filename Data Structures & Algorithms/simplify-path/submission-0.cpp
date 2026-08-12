@@ -1,0 +1,33 @@
+/*
+Optimal Algorithm
+1. Split the path string by / to get an array of parts.
+2. For each part:
+- If it equals .., pop from the stack (if not empty).
+- If it is a valid directory name (not empty and not .), push it onto the stack.
+3. Join the stack with / and prepend a leading / to return the simplified path.
+*/
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        vector<string> stack;
+        string cur;
+        stringstream ss(path);
+        while (getline(ss, cur, '/')) {
+            if (cur.empty()) continue;
+            if (cur == "..") {
+                if (!stack.empty()) stack.pop_back();
+            } else if (!cur.empty() && cur != ".") {
+                stack.push_back(cur);
+            }
+        }
+
+        string result = "/";
+        for (int i = 0; i < stack.size(); ++i) {
+            if (i > 0) result += "/";
+            result += stack[i];
+        }
+
+        return result;
+    }
+};
