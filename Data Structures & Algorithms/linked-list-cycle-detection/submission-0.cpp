@@ -16,7 +16,7 @@ Optimal Algorithm
 - fast = head
 2. Move through the list:
 - slow moves one step (slow->next).
-- fast moves two steps (slow->next->next).
+- fast moves two steps (fast->next->next).
 3. If at any point slow == fast, a cycle exists, return true.
 4. If fast reaches the end (null or fast.next is null), no cycle exists, return false.
 */
